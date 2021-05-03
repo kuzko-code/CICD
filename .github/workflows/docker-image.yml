@@ -32,9 +32,10 @@ jobs:
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
+
   run-playbooks:
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v2
-    - name: Run Ansible Playbook
-      run: ansible-playbook UpgradeWorkload.yml
+      - uses: actions/checkout@v2
+      - name: Run Ansible Playbook
+        run: ansible-playbook UpgradeWorkload.yml

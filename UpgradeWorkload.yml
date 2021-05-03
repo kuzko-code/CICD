@@ -1,0 +1,19 @@
+---
+- hosts: servers
+  become: yes
+  vars:
+    ansible_user: "root"
+  tasks:
+  - name Choose the deployment
+    ansible.builtin.shell: |
+      spawn rancher context switch
+      expect "Select a Project:"
+      send 3\n;
+      exit 0
+    args:
+      executable: /usr/bin/expect
+    delegate_to: localhost
+  - name Update the deployment
+    ansible.builtin.shell:
+      cmd: rancher kubectl image deployment/cicd cicd=kuzko/cicd:latest
+      

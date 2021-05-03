@@ -21,6 +21,5 @@
     args:
       executable: /usr/bin/expect
   - name: Update the deployment
-    shell:
-      cmd: rancher kubectl --namespace=default patch deployment cicd --type=strategic -p '{"spec":{"template":{"spec":{"containers":[{"name":"cicd","image": "kuzko/cicd:latest","env":[{"name":"FORCE_RESTART_AT","value":"$CI_PIPELINE_ID"}]}]}}}}'
-      
+    script:
+      cmd: /usr/bin/update_cicd.sh

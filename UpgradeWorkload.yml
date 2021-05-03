@@ -14,5 +14,5 @@
       executable: /usr/bin/expect
   - name: Update the deployment
     shell:
-      cmd: rancher kubectl image deployment/cicd cicd=kuzko/cicd:latest
+      cmd: rancher kubectl set image deployment/cicd cicd=kuzko/cicd:latest
       
